@@ -1,0 +1,3 @@
+# Clarity maintenance
+
+Work directly in this repository. Preserve existing locally stored user data: localStorage key `clarity_v1`, object containing `journal` and `tests`. Maintain backward compatibility; test migrations with synthetic fixtures only. Never upload personal health records, journal entries, test results, or user backups. Keep the production site origin stable. Exported backups are user-managed, outside the repository. Bump the service worker cache name whenever cached assets change. Verify JavaScript syntax, referenced assets, existing-record loading and unchanged records before release. No analytics, external scripts, or remote health-data transmission.

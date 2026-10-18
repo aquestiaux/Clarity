@@ -1,0 +1,7 @@
+# Personal exports must never enter version control
+clarity-backup-*.json
+clarity-journal.csv
+clarity-tests.csv
+backups/
+.env
+.DS_Store

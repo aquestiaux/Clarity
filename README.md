@@ -1,4 +1,4 @@
-# Clarity v0.4.1
+# Clarity v0.4.2
 
 Personal cognitive and wellbeing tracker. Static, offline-capable web application; no build step or server required.
 
@@ -48,3 +48,6 @@ JSON exports include all check-ins. CSV exports include daily summaries and indi
 
 ## Sleep (v0.4.1)
 Sleep is recorded against the waking date, including lights-out and wake-up clock times and a quality rating. The displayed interval handles midnight crossing but is not treated as actual sleep. Actual hours asleep remain optional and feed sleep-duration charts. Legacy `lights`, `quality` and `hours` fields are unchanged; `wake` is additive. Latest non-empty sleep clock times and latest non-missing quality are retained in daily summaries. Sertraline is removed from the interface and charts; any historic values remain in local records and exports.
+
+## Sliders and irritability (v0.4.2)
+The actual-hours-asleep input and duration charts are removed; legacy `hours` values remain in records and exports. The sleep chart now uses sleep quality. Mood, fog, quality, anxiety, irritability and pre-test sleepiness use labelled 0–10 sliders with live scores. Unanswered journal ratings save null, not the physical slider midpoint. Clear removes an answer; pre-test sleepiness resets to its existing default of 3. Irritability is an additive numeric field, averaged across check-ins for daily summaries and available in Trends and dashboard stats. Previous rating values and unknown legacy fields remain supported.

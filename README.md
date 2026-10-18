@@ -1,4 +1,4 @@
-# Clarity v0.4
+# Clarity v0.4.1
 
 Personal cognitive and wellbeing tracker. Static, offline-capable web application; no build step or server required.
 
@@ -40,8 +40,11 @@ Edit this repository directly. Preserve the clarity_v1 localStorage key and the 
 ## Calendar and cycle tracking (v0.4)
 Choose any calendar day (today by default), then add separate check-ins or edit one saved check-in. Old entries remain available. Each check-in has a date, local time and creation timestamp. Future plans are excluded from summaries until their date.
 
-Additive schema: `logs[date]` stores `{id, time, createdAt?, updatedAt?, values}` check-ins. Legacy `journal[date]` records are kept and imported as the first check-in only when that day is first saved. `journal` remains a daily summary: mood, fog, quality and anxiety average available check-ins; sleep and other numeric measures use the latest non-missing value by check-in time. Existing `tests` and unknown record fields are retained. No records are changed merely by opening the app. New check-ins leave scores blank until supplied.
+Additive schema: `logs[date]` stores `{id, time, createdAt?, updatedAt?, values}` check-ins. Legacy `journal[date]` records are kept and imported as the first check-in only when that day is first saved. `journal` remains a daily summary: mood, fog and anxiety average available check-ins; sleep quality uses the latest non-missing nightly rating; sleep and other numeric measures use the latest non-missing value by check-in time. Existing `tests` and unknown record fields are retained. No records are changed merely by opening the app. New check-ins leave scores blank until supplied.
 
 Period-start details appear only when Yes is selected. General symptoms remain available every day. Cycle estimates use the mean of the most recent six recorded intervals once three exist; otherwise they use a stated usual length or an explicitly provisional 28-day assumption. Predictions use actual recorded starts only and never roll an overdue cycle forward automatically. Phase estimates are hidden for irregular timing or when disabled. Dates cannot measure hormone levels or confirm ovulation; estimates are not contraception. General timing information: https://www.nhs.uk/conditions/periods/fertility-in-the-menstrual-cycle/ . Headache comparisons use logged calendar days in completed cycle halves, not measured hormonal phases.
 
 JSON exports include all check-ins. CSV exports include daily summaries and individual check-ins separately. Run `node tests/calendar-regression.cjs` for synthetic-data regression coverage.
+
+## Sleep (v0.4.1)
+Sleep is recorded against the waking date, including lights-out and wake-up clock times and a quality rating. The displayed interval handles midnight crossing but is not treated as actual sleep. Actual hours asleep remain optional and feed sleep-duration charts. Legacy `lights`, `quality` and `hours` fields are unchanged; `wake` is additive. Latest non-empty sleep clock times and latest non-missing quality are retained in daily summaries. Sertraline is removed from the interface and charts; any historic values remain in local records and exports.

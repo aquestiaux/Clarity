@@ -19,3 +19,5 @@ LIMITATIONS
 Experimental, non-validated cognitive tasks; not diagnostic. Touchscreen latency and test-form difficulty limit precision. Repeated exposure can produce practice effects. Follow medical advice for all medication changes.
 
 Version 0.2 adds daily menstrual tracking and a dashboard. Replacing hosted files preserves data only if the site origin remains unchanged; export a JSON backup first.
+
+Version 0.4 adds a selectable month calendar, timestamped check-ins, daily summaries, conditional period-start details and descriptive cycle estimates. Old journal and test records remain compatible. JSON exports include all check-ins. The journal CSV contains daily summaries; the additional check-ins CSV contains individual logs. Future plans are excluded from summaries until their date. Cycle estimates do not measure hormone levels or confirm ovulation.

@@ -1,5 +1,5 @@
-const CACHE='clarity-v3';
-const ASSETS=['./','./index.html','./app.js','./manifest.webmanifest','./icon.svg'];
+const CACHE='clarity-v4';
+const ASSETS=['./','./index.html','./app.js','./journal.js','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('clarity-')&&k!==CACHE).map(k=>caches.delete(k))))])));
 // Reopening online uses fresh HTML and code; offline requests use the last successful copy.

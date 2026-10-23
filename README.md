@@ -1,4 +1,4 @@
-# Clarity v0.5.2
+# Clarity v0.5.3
 
 Personal cognitive and wellbeing tracker. Static, offline-capable web application; no build step or server required.
 
@@ -62,7 +62,7 @@ Trends supports multiple selected measures, defaulting to mood plus sleep qualit
 
 Run `npm test` for the dependency-free data regression checks. For browser checks, install development dependencies and Chromium (`npm install`, then `npx playwright install chromium`), and run `npm run test:browser`. An existing browser binary can be selected with `CHROMIUM_EXECUTABLE_PATH`. Tests use synthetic fixtures, a local server and temporary screenshots only.
 
-## Entry visibility and local recovery (v0.5.2)
+## Entry visibility and local recovery (v0.5.3)
 Journal now shows an always-visible saved-entry count and an All entries panel covering every recorded date, including records found only in `logs`. Older records are shown automatically when the selected day is empty. An empty logs array no longer hides a legacy daily journal record. Opening History and viewing records do not rewrite saved data.
 
 Data identifies the current browser/Home Screen context and can download the exact original `clarity_v1` value without parsing, replacing or transmitting it. Safari and installed Home Screen copies may have separate local stores; use the original installed copy when checking for records.
@@ -70,3 +70,9 @@ Data identifies the current browser/Home Screen context and can download the exa
 If saved JSON cannot be parsed or its structure cannot be read, the app preserves the original value and blocks writes. It also rejects saves from a stale window when the saved value changed since that window loaded. These protections do not recover data that is absent from the current local store and do not prove that records in another copy were deleted. No device records are sent to GitHub or a server.
 
 Run `npm run test:recovery` (with the browser-test setup above) for synthetic checks covering more than eight old records, logs-only dates, empty-log fallback, read-only startup, original-data download and stale-window write protection.
+
+## Save protection (v0.5.3)
+
+Ordinary saves validate the legacy-compatible database and reject loss of existing days, log IDs or completed tests. Every save first writes and reads back recovery snapshots under `clarity_recovery_v1`; a failed recovery write blocks the main write. Snapshots retain the initial protected notebook, first versions on seven recent save days and three recent distinct versions. Page loads do not rewrite data. Stale-window and unreadable-data guards remain active. Empty primary data with nonempty recovery copies blocks ordinary writes and directs the user to Data. Recovery downloads are local; restoration requires explicit confirmation and protects the current notebook first. Explicit erasure removes the recovery copies too.
+
+These copies share the browser's storage lifetime and quota. They cannot survive removal of all site data or device loss. Export JSON backups to Files for independent protection. No health records are sent to GitHub or a server.

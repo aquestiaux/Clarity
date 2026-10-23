@@ -1,9 +1,9 @@
 {
   "name": "clarity-local-journal",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "private": true,
   "scripts": {
-    "test": "node tests/calendar-regression.cjs",
+    "test": "node tests/calendar-regression.cjs && node tests/storage-regression.cjs",
     "test:browser": "node tests/browser-regression.cjs",
     "test:recovery": "node tests/history-browser-regression.cjs"
   },

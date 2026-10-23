@@ -1,4 +1,4 @@
-# Clarity v0.4.2
+# Clarity v0.5.1
 
 Personal cognitive and wellbeing tracker. Static, offline-capable web application; no build step or server required.
 
@@ -51,3 +51,13 @@ Sleep is recorded against the waking date, including lights-out and wake-up cloc
 
 ## Sliders and irritability (v0.4.2)
 The actual-hours-asleep input and duration charts are removed; legacy `hours` values remain in records and exports. The sleep chart now uses sleep quality. Mood, fog, quality, anxiety, irritability and pre-test sleepiness use labelled 0–10 sliders with live scores. Unanswered journal ratings save null, not the physical slider midpoint. Clear removes an answer; pre-test sleepiness resets to its existing default of 3. Irritability is an additive numeric field, averaged across check-ins for daily summaries and available in Trends and dashboard stats. Previous rating values and unknown legacy fields remain supported.
+
+
+## Interface and comparisons (v0.5.1)
+The mood-first interface keeps full check-ins in expandable groups, with a compact optional calendar, mood-coloured entry cards, bottom navigation and a local Soft paper/Calm dark preference. Context shortcuts add or remove whole lines from the existing events field while preserving other text. All cognitive tests, cycle estimates, journal fields, CSV exports and JSON restore controls remain available.
+
+New slider choices are integers from 0 to 10. Historical fractional ratings are preserved on load and when editing another field; moving that slider replaces its score with a whole number. The storage key remains `clarity_v1`.
+
+Trends supports multiple selected measures, defaulting to mood plus sleep quality. Compatible 0–10 scores share their actual scale. Different units automatically use relative 0–10 scaling based on each series' observed min/max; constant series appear at 5. The legend gives original units and ranges. Tap a date to read actual values. Date spacing is proportional to calendar time; missing values remain missing. Multiple study sessions on one date are averaged; practice sessions and future dates are excluded.
+
+Run `npm test` for the dependency-free data regression checks. For browser checks, install development dependencies and Chromium (`npm install`, then `npx playwright install chromium`), and run `npm run test:browser`. An existing browser binary can be selected with `CHROMIUM_EXECUTABLE_PATH`. Tests use synthetic fixtures, a local server and temporary screenshots only.

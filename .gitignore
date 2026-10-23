@@ -6,3 +6,6 @@ clarity-checkins.csv
 backups/
 .env
 .DS_Store
+node_modules/
+playwright-report/
+test-results/

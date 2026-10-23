@@ -56,3 +56,4 @@ loadDay();renderRecent();
 function sleepMinutes(lights,wake){if(!/^\d{2}:\d{2}$/.test(lights)||!/^\d{2}:\d{2}$/.test(wake))return null;const mins=t=>Number(t.slice(0,2))*60+Number(t.slice(3));const n=(mins(wake)-mins(lights)+1440)%1440;return n||null}
 function renderSleep(){$('sleepNightLabel').textContent='Night ending '+dayLabel($('date').value)+'.';const n=sleepMinutes($('lights').value,$('wake').value);$('sleepWindow').textContent=n===null?'Enter both times to see the interval between lights out and waking.':'Lights out → wake-up: '+Math.floor(n/60)+'h '+n%60+'m. This interval includes any time spent awake.'}
 $('lights').addEventListener('input',renderSleep);$('wake').addEventListener('input',renderSleep);renderSleep();
+

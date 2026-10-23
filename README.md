@@ -1,4 +1,4 @@
-# Clarity v0.5.1
+# Clarity v0.5.2
 
 Personal cognitive and wellbeing tracker. Static, offline-capable web application; no build step or server required.
 
@@ -61,3 +61,12 @@ New slider choices are integers from 0 to 10. Historical fractional ratings are 
 Trends supports multiple selected measures, defaulting to mood plus sleep quality. Compatible 0–10 scores share their actual scale. Different units automatically use relative 0–10 scaling based on each series' observed min/max; constant series appear at 5. The legend gives original units and ranges. Tap a date to read actual values. Date spacing is proportional to calendar time; missing values remain missing. Multiple study sessions on one date are averaged; practice sessions and future dates are excluded.
 
 Run `npm test` for the dependency-free data regression checks. For browser checks, install development dependencies and Chromium (`npm install`, then `npx playwright install chromium`), and run `npm run test:browser`. An existing browser binary can be selected with `CHROMIUM_EXECUTABLE_PATH`. Tests use synthetic fixtures, a local server and temporary screenshots only.
+
+## Entry visibility and local recovery (v0.5.2)
+Journal now shows an always-visible saved-entry count and an All entries panel covering every recorded date, including records found only in `logs`. Older records are shown automatically when the selected day is empty. An empty logs array no longer hides a legacy daily journal record. Opening History and viewing records do not rewrite saved data.
+
+Data identifies the current browser/Home Screen context and can download the exact original `clarity_v1` value without parsing, replacing or transmitting it. Safari and installed Home Screen copies may have separate local stores; use the original installed copy when checking for records.
+
+If saved JSON cannot be parsed or its structure cannot be read, the app preserves the original value and blocks writes. It also rejects saves from a stale window when the saved value changed since that window loaded. These protections do not recover data that is absent from the current local store and do not prove that records in another copy were deleted. No device records are sent to GitHub or a server.
+
+Run `npm run test:recovery` (with the browser-test setup above) for synthetic checks covering more than eight old records, logs-only dates, empty-log fallback, read-only startup, original-data download and stale-window write protection.

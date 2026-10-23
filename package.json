@@ -1,10 +1,11 @@
 {
   "name": "clarity-local-journal",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "scripts": {
     "test": "node tests/calendar-regression.cjs",
-    "test:browser": "node tests/browser-regression.cjs"
+    "test:browser": "node tests/browser-regression.cjs",
+    "test:recovery": "node tests/history-browser-regression.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

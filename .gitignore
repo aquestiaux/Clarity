@@ -1,5 +1,6 @@
 # Keep personal exports out of version control
 clarity-backup-*.json
+clarity-original-local-data-*.json
 clarity-journal.csv
 clarity-tests.csv
 clarity-checkins.csv
